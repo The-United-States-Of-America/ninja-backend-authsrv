@@ -1,4 +1,4 @@
-# Node.js (4.0.0) Backend User Authentication Service
+# Backend User Authentication Service
 
 Service allows for User Creation, Login and Authentication
 
