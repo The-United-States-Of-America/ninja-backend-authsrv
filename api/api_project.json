@@ -1,0 +1,1 @@
+{  "name": "node-backend-authsrv",  "version": "0.0.1",  "description": "Backend Authentication API",  "sampleUrl": false,  "apidoc": "0.2.0",  "generator": {    "name": "apidoc",    "time": "2015-10-26T23:27:01.731Z",    "url": "http://apidocjs.com",    "version": "0.13.1"  }}

@@ -2,6 +2,7 @@ const config = {
   development: {
     port: 8001
   },
+
   production: {
     port: process.env.PORT
   }

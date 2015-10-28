@@ -1,3 +1,4 @@
+import {optionsLogin, optionsRegister} from '../authendpoints'
 import request from 'request';
 import express from 'express';
 const rtr = express.Router();
@@ -10,15 +11,48 @@ export default class ClientRoute{
    * Place all routes inside the constructor, so that they will be built.
    */
   constructor() {
+    /**
+    * @api {post} /register Register Client
+    * @apiName registerClient
+    * @apiGroup Client
+    *
+    * @apiParam {String} email
+    * @apiParam {String} password
+    * @apiParam {String} firstName
+    * @apiParam {String} lastName
+    * @apiParam {Number} ssn
+    *
+    * @apiError InvalidPassword Password must be at leat 5 charcters long
+    * @apiError IncompleteRegistration All fields must be completed
+    */
+    rtr.post('/register', (req, res) => {
+      console.log(body);
+      request(optionsRegister, (error, response, body) => {
+          console.log(body, error);
+          if(req.body.password.length < 5) return res.status(400).send("Password must be at least 5 characters long");
+          if(response.statusCode !== 200) return res.status(404).send("Invalid Registration: Please make sure all content is filled");
+          else return res.send(JSON.parse(body));
+      });
+      //console.log(body, error);
+      //Verify email
+      //Verify password length (min. 5 chars)
+      //Verify SSN
+    });
+
+    /**
+    * @api {post} /login Client Login
+    * @apiName loginClient
+    * @apiGroup Client
+    *
+    * @apiParam {String} email
+    * @apiParam {String} password
+    *
+    * @apiError InvalidPassword
+    * @apiError InvalidEmail
+    */
     rtr.post('/login', (req, res) => {
-      //console.log(req.body)
-      const options = {
-        url: 'http://localhost:8000/client/get/' + req.body.email,
-        headers: {
-          'User-Agent': 'request'
-        }
-      };
-      request(options, (error, response, body) => {
+      //console.log(req.body);
+      request(optionsLogin, (error, response, body) => {
         //console.log(body, error);
         if(response.statusCode !== 200) return res.status(400).send("Invalid Email");
         if(req.body.password !== JSON.parse(body).password) return res.status(404).send("Invalid Password");
@@ -28,7 +62,6 @@ export default class ClientRoute{
     });
 
   }
-
   /**
    * Get the router instance for this class
    */
