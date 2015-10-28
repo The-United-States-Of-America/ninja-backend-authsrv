@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+    - stable
+
+before_install:
+    - npm install -g gulp esdoc mocha
+    - chmod 755 ./deploy_docs.sh
+
+script:
+    - gulp
+
+after_success:
+    - 'cat ./coverage/lcov.info | ./node_modules/.bin/coveralls'
+    - bash ./deploy_docs.sh
+
+env:
+  global:
+  - GH_REF: github.com/The-United-States-Of-America/ninja-backend-authsrv.git
+
+notifications:
+  slack: team-murica:KwaWUHr5gCRzm33eJuJUvAsu
