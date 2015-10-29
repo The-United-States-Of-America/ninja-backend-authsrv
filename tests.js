@@ -1,3 +1,4 @@
 // Run tests in specified order
 
-import './test/server.js';
+import './test/client.js';
+import './test/provider.js';

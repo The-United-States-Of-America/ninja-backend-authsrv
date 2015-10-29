@@ -1,4 +1,5 @@
 import ClientRoute from './routes/client'
+import ProviderRoute from './routes/provider'
 
 /**
  * The Router is responsible for aggregating all the various routing endpoints within the application, and serving them.
@@ -14,7 +15,9 @@ export default class Router {
     // Define routes here
     const routes = {
       //sample_route: new SampleRoute()
-      client: new ClientRoute()
+      client: new ClientRoute(),
+      provider: new ProviderRoute(),
+      administrator: new AdministratorRoute()
     };
 
     for (let route in routes) {

@@ -6,37 +6,34 @@ const should = chai.should(),
       expect = chai.expect,
       api = supertest('http://localhost:' + config.port);
 
-describe('ClientLoginTests', () => {
+describe('AdministratorLoginTests', () => {
 
-  it('should successfully create a client', (done) => {
-    api.post('/client/register')
+  it('should successfully create a administrator', (done) => {
+    api.post('/administrator/register')
       .set('Accept', 'application/json')
       .send({
-        ssn: '246810112',
         firstName: 'David',
         lastName: 'Dominguez',
         email: 'domind4@rpi.edu',
-        password: 'test0102'
-
+        password: 'test0102',
       })
       .expect(200, done);
   });
 
   it('should fail with too short of a password', (done) => {
-    api.post('/client/register')
+    api.post('/administrator/register')
       .set('Accept, application/json')
       .send({
-        ssn: '369121518',
-        firstName: 'Sharkbait',
-        lastName: 'Nemo',
-        email: 'nemos@rpi.edu',
-        password: 'test'
+        firstName: 'David',
+        lastName: 'Dominguez',
+        email: 'domind4@rpi.edu',
+        password: 'test',
       })
       .expect(400, done);
   });
 
   it('should fail with not enough content', (done) => {
-    api.post('/client/register')
+    api.post('/administrator/register')
       .set('Accept, application/json')
       .send({
         firstName: 'Sharkbait',
@@ -46,31 +43,31 @@ describe('ClientLoginTests', () => {
       .expect(404, done);
   });
 
-  it('should succeed client login', (done) => {
-    api.post('/client/login')
+  it('should succeed login', (done) => {
+    api.post('/administrator/login')
        .set('Accept', 'application/json')
        .send({
-         email: 'sathyp@rpi.edu',
-         password: 'test'
+         email: 'domind4@rpi.edu',
+         password: 'test0102'
        })
        .expect(200, done);
   });
 
   it('should fail with incorrect email', (done) => {
-    api.post('/client/login')
+    api.post('/administrator/login')
        .set('Accept', 'application/json')
        .send({
          email: 'wrongsathyp@rpi.edu',
-         password: 'test'
+         password: 'test0102'
        })
        .expect(400, done);
   });
 
   it('should fail with incorrect password', (done) => {
-    api.post('/client/login')
+    api.post('/administrator/login')
        .set('Accept', 'application/json')
        .send({
-         email: 'sathyp@rpi.edu',
+         email: 'domind4@rpi.edu',
          password: 'wrongtest'
        })
        .expect(404, done);
