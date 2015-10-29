@@ -1,5 +1,6 @@
 import ClientRoute from './routes/client'
 import ProviderRoute from './routes/provider'
+import AdministratorRoute from './routes/administrator'
 
 /**
  * The Router is responsible for aggregating all the various routing endpoints within the application, and serving them.
