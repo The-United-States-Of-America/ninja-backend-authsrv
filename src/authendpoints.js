@@ -2,7 +2,7 @@
 * @api optionsLogin
 * @apiGroup Client
 *
-* @apiParam {String} email Client's email
+* @apiParam {String} email Client's Email
 *
 */
 export const clientLogin = (email) => ({
@@ -18,6 +18,14 @@ export const clientRegister = {
     'User-Agent': 'request'
   }
 };
+
+/**
+* @api providerLogin
+* @apiGroup Provider
+*
+* @apiParam {String} email Provider's Email
+*
+*/
 export const providerLogin = (email) => ({
     url: 'http://localhost:8000/provider/get/' + email,
     headers: {
@@ -31,6 +39,14 @@ export const providerRegister = {
     'User-Agent': 'request'
   }
 };
+
+/**
+* @api administratorLogin
+* @apiGroup Administrator
+*
+* @apiParam {String} email Administrator's Email
+*
+*/
 export const administratorLogin = (email) => ({
     url: 'http://localhost:8000/provider/get/' + email,
     headers: {
