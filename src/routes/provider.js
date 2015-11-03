@@ -49,7 +49,7 @@ export default class ProviderRoute{
     */
     rtr.post('/login', (req, res) => {
       //console.log(req.body);
-      request(providerLogin, (error, response, body) => {
+      request(providerLogin(req.body.email), (error, response, body) => {
         //console.log(body, error);
         if(response.statusCode !== 200) return res.status(400).send("Invalid Email");
         if(req.body.password !== JSON.parse(body).password) return res.status(404).send("Invalid Password");
