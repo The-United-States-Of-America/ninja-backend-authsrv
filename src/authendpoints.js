@@ -32,7 +32,7 @@ export const providerLogin = (email) => ({
       'User-Agent': 'request'
     }
   });
-
+  
 export const providerRegister = {
   url: 'http://localhost:8000/provider/create',
   headers: {
@@ -48,14 +48,14 @@ export const providerRegister = {
 *
 */
 export const administratorLogin = (email) => ({
-    url: 'http://localhost:8000/provider/get/' + email,
+    url: 'http://localhost:8000/administrator/get/' + email,
     headers: {
       'User-Agent': 'request'
     }
   });
 
 export const administratorRegister = {
-  url: 'http://localhost:8000/provider/create',
+  url: 'http://localhost:8000/administrator/create',
   headers: {
     'User-Agent': 'request'
   }
