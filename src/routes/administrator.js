@@ -12,7 +12,7 @@ export default class AdministratorRoute{
    */
   constructor() {
     /**
-    * @api {post} /register Register Administrator
+    * @api {post} /administrator/register Register Administrator
     * @apiName administratorRegister
     * @apiGroup Administrator
     *
@@ -36,7 +36,7 @@ export default class AdministratorRoute{
     });
 
     /**
-    * @api {post} /login Administrator Login
+    * @api {post} /administrator/login Administrator Login
     * @apiName administratorLogin
     * @apiGroup Administrator
     *

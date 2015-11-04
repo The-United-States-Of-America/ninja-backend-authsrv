@@ -32,13 +32,20 @@ export const providerLogin = (email) => ({
       'User-Agent': 'request'
     }
   });
-  
-export const providerRegister = {
-  url: 'http://localhost:8000/provider/create',
+
+export const providerRegister = (npi) => ({
+  url: 'http://localhost:8000/provider/create/' + npi,
   headers: {
     'User-Agent': 'request'
   }
-};
+});
+
+// export const providerRegister = {
+//   url: 'http://localhost:8000/provider/create',
+//   headers: {
+//     'User-Agent': 'request'
+//   }
+// };
 
 /**
 * @api administratorLogin

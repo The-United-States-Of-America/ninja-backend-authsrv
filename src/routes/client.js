@@ -12,7 +12,7 @@ export default class ClientRoute{
    */
   constructor() {
     /**
-    * @api {post} /register Register Client
+    * @api {post} /client/register Register Client
     * @apiName clientRegister
     * @apiGroup Client
     *
@@ -36,7 +36,7 @@ export default class ClientRoute{
     });
 
     /**
-    * @api {post} /login Client Login
+    * @api {post} /client/login Client Login
     * @apiName clientLogin
     * @apiGroup Client
     *

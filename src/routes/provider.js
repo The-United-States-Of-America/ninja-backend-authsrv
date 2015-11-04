@@ -12,15 +12,21 @@ export default class ProviderRoute{
    */
   constructor() {
     /**
-    * @api {post} /register Register Provider
+    * @api {post} /provider/register Register Provider
     * @apiName providerRegister
     * @apiGroup Provider
     *
     * @apiParam {String} email
     * @apiParam {String} password
-    * @apiParam {String} firstName
-    * @apiParam {String} lastName
     * @apiParam {Number} ssn
+    * @apiParam {Number} npi
+    *
+    * @apiSuccessExample {json} Success-Response:
+    *     HTTP/1.1 200 OK
+    *     {
+    *       "firstname": "John",
+    *       "lastname": "Doe"
+    *     }
     *
     * @apiError InvalidPassword Password must be at leat 5 charcters long
     * @apiError IncompleteRegistration All fields must be completed
@@ -29,15 +35,18 @@ export default class ProviderRoute{
       console.log(body);
       request(providerRegister, (error, response, body) => {
           console.log(body, error);
-          if(req.body.password.length < 5) return res.status(400).send("Password must be at least 5 characters long");
-          if(response.statusCode !== 200) return res.status(404).send("Invalid Registration: Please make sure all content is filled");
-          else return res.send(JSON.parse(body));
-          //NEED TO ADD SPECIALIZATIONS TO DB FROM NPI LOOKUP
+          var value = //LOOK UP http://www.bloomapi.com/api/npis/req.body.npi
+          if (value == "npi not found") return res.status(400).send("Invalid NPI");
+          else {
+            if(req.body.password.length < 5) return res.status(400).send("Password must be at least 5 characters long");
+            if(response.statusCode !== 200) return res.status(404).send("Invalid Registration: Please make sure all content is filled");
+            else return res.send(JSON.parse(body));
+          }
       });
     });
 
     /**
-    * @api {post} /login Provider Login
+    * @api {post} /provider/login Provider Login
     * @apiName  providerLogin
     * @apiGroup Provider
     *
@@ -57,13 +66,6 @@ export default class ProviderRoute{
       });
       //return res.send('LOGIN');
     });
-
-    // rtr.post('/addSpecialization', (req, res) => {
-    //   request(providerLogin, (error, response,, body) => {
-    //     if(response.statusCode !== 200) return res.status(400).send("Invalid Specialization");
-    //     else return res.send(JSON.parse(body));
-    //   });
-    // });
 
   }
   /**
