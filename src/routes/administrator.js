@@ -48,7 +48,7 @@ export default class AdministratorRoute{
     */
     rtr.post('/login', (req, res) => {
       console.log(req.body);
-      request(administratorLogin, (error, response, body) => {
+      request(administratorLogin(req.body.email), (error, response, body) => {
         //console.log(body, error);
         if(response.statusCode !== 200) return res.status(400).send("Invalid Email");
         if(req.body.password !== JSON.parse(body).password) return res.status(404).send("Invalid Password");
