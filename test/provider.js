@@ -14,8 +14,6 @@ describe('ProviderLoginTests', () => {
       .send({
         ssn: 246810112,
         npi: 246810112,
-        firstName: 'David',
-        lastName: 'Dominguez',
         email: 'domind4@rpi.edu',
         password: 'test0102',
         prefix: 'Mr.'

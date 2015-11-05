@@ -21,12 +21,6 @@ export default class ProviderRoute{
     * @apiParam {Number} ssn
     * @apiParam {Number} npi
     *
-    * @apiSuccessExample {json} Success-Response:
-    *     HTTP/1.1 200 OK
-    *     {
-    *       "firstname": "John",
-    *       "lastname": "Doe"
-    *     }
     *
     * @apiError InvalidPassword Password must be at leat 5 charcters long
     * @apiError IncompleteRegistration All fields must be completed
@@ -35,13 +29,28 @@ export default class ProviderRoute{
       console.log(body);
       request(providerRegister, (error, response, body) => {
           console.log(body, error);
-          var value = //LOOK UP http://www.bloomapi.com/api/npis/req.body.npi
-          if (value == "npi not found") return res.status(400).send("Invalid NPI");
-          else {
-            if(req.body.password.length < 5) return res.status(400).send("Password must be at least 5 characters long");
-            if(response.statusCode !== 200) return res.status(404).send("Invalid Registration: Please make sure all content is filled");
-            else return res.send(JSON.parse(body));
+          var option = {
+            host: 'www.bloomapi.com/api/npis',
+            path: '/' + res.body.npi,
+            method: 'GET'
           }
+          http.request(options, function(res) {
+            console.log('STATUS: ' + res.statusCode);
+            console.log('HEADERS: ' + JSON.stringify(res.headers));
+            res.setEncoding('utf8');
+            res.on('data', function (chunk) {
+              console.log('BODY: ' + chunk);
+              if (chunk == "npi not found") return res.status(400).send("Invalid NPI");
+              else{
+                req.body.firstName = res.headers.first_name;
+                req.body.lastName = res.headers.last_name;
+                req.body.prefix = res.headers.name_prefix;
+              }
+            });
+          }).end();
+          if(req.body.password.length < 5) return res.status(400).send("Password must be at least 5 characters long");
+          if(response.statusCode !== 200) return res.status(404).send("Invalid Registration: Please make sure all content is filled");
+          else return res.send(JSON.parse(body));
       });
     });
 
