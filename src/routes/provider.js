@@ -49,9 +49,6 @@ export default class ProviderRoute{
                   //process.stdout.write(d);
                   if(res1.body == "npi not found") return res.status(400).send("Invalid NPI");
                   else{
-                    res1.body += "firstName" : res1.body.first_name;
-                    res1.body += "lastName" : res1.body.last_name;
-                    res1.body += "prefix" : res1.body.name_prefix;
                     if(req.body.password.length < 5) return res.status(400).send("Password must be at least 5 characters long");
                     if(response.statusCode !== 200) return res.status(404).send("Invalid Registration: Please make sure all content is filled");
                     else return res.send(JSON.parse(body));
