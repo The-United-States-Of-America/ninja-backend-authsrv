@@ -47,12 +47,13 @@ export const providerRegister = (npi) => ({
   }
 });
 
-// export const providerRegister = {
-//   url: 'http://localhost:8000/provider/create',
-//   headers: {
-//     'User-Agent': 'request'
-//   }
-// };
+export const providerRegister = {
+  url: 'http://localhost:8000/provider/create',
+  headers: {
+    'User-Agent': 'request'
+  }
+};
+
 
 /**
 * @api administratorLogin
