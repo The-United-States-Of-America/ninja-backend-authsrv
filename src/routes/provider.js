@@ -29,38 +29,41 @@ export default class ProviderRoute{
       console.log(body);
       request(providerRegister, (error, response, body) => {
           console.log(body, error);
-          var https = require('https');
-          var optionsget = {
-              host : 'www.bloomapi.com',
-              port : 80,
-              path : '/api/npis/' + res.body.npi,
-              method : 'GET'
-          };
-          console.info('Options prepared:');
-          console.info(optionsget);
-          console.info('Do the GET call');
-          // do the GET request
-          var reqGet = https.request(optionsget, function(res1) {
-              console.log("statusCode: ", res1.statusCode);
-              // uncomment it for header details
-          //  console.log("headers: ", res.headers);
-              res1.on('data', function(d) {
-                  console.info('GET result:\n');
-                  //process.stdout.write(d);
-                  if(res1.body == "npi not found") return res.status(400).send("Invalid NPI");
-                  else{
-                    if(req.body.password.length < 5) return res.status(400).send("Password must be at least 5 characters long");
-                    if(response.statusCode !== 200) return res.status(404).send("Invalid Registration: Please make sure all content is filled");
-                    else return res.send(JSON.parse(body));
-                  }
-                  console.info('\n\nCall completed');
-              });
-          });
-          reqGet.end();
-          reqGet.on('error', function(e) {
-              console.error(e);
-          });
-      });
+      //     var https = require('https');
+      //     var optionsget = {
+      //         host : 'www.bloomapi.com',
+      //         port : 80,
+      //         path : '/api/npis/' + res.body.npi,
+      //         method : 'GET'
+      //     };
+      //     console.info('Options prepared:');
+      //     console.info(optionsget);
+      //     console.info('Do the GET call');
+      //     // do the GET request
+      //     var reqGet = https.request(optionsget, function(res1) {
+      //         console.log("statusCode: ", res1.statusCode);
+      //         // uncomment it for header details
+      //     //  console.log("headers: ", res.headers);
+      //         res1.on('data', function(d) {
+      //             console.info('GET result:\n');
+      //             //process.stdout.write(d);
+      //             if(res1.body == "npi not found") return res.status(400).send("Invalid NPI");
+      //             else{
+      //               if(req.body.password.length < 5) return res.status(400).send("Password must be at least 5 characters long");
+      //               if(response.statusCode !== 200) return res.status(404).send("Invalid Registration: Please make sure all content is filled");
+      //               else return res.send(JSON.parse(body));
+      //             }
+      //             console.info('\n\nCall completed');
+      //         });
+      //     });
+      //     reqGet.end();
+      //     reqGet.on('error', function(e) {
+      //         console.error(e);
+      //     });
+      // });
+      if(req.body.password.length < 5) return res.status(400).send("Password must be at least 5 characters long");
+      if(response.statusCode !== 200) return res.status(404).send("Invalid Registration: Please make sure all content is filled");
+      else return res.send(JSON.parse(body));
     });
 
     /**
