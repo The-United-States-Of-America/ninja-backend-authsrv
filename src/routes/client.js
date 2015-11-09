@@ -28,7 +28,7 @@ export default class ClientRoute {
     * @apiError IncompleteRegistration All fields must be completed
     */
     rtr.post('register/', (req, res) => {
-      client(clientRegister, req.body, (error, response, body) => {
+      client.post(clientRegister, req.body, (error, response, body) => {
           if(req.body.password.length < 5) return res.status(400).send("Password must be at least 5 characters long");
           if(response.statusCode !== 200) return res.status(404).send("Invalid Registration: Please make sure all content is filled");
           else return res.send(JSON.parse(body));
@@ -47,7 +47,7 @@ export default class ClientRoute {
     * @apiError InvalidEmail
     */
     rtr.post('login/', (req, res) => {
-      client(clientLogin(req.body.email), (error, response, body) => {
+      client.get(clientLogin(req.body.email), (error, response, body) => {
         if(response.statusCode !== 200) return res.status(400).send("Invalid Email");
         if(req.body.password !== JSON.parse(body).password) return res.status(404).send("Invalid Password");
         else return res.send(JSON.parse(body));
