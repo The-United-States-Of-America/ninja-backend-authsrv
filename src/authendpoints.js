@@ -12,12 +12,15 @@ export const clientLogin = (email) => ({
     }
   });
 
-export const clientRegister = {
+export const clientRegister = (body) => ({
   url: 'http://localhost:8000/client/create',
+  method: 'POST',
   headers: {
-    'User-Agent': 'request'
-  }
-};
+    'Content-Type': 'application/json'
+  },
+
+  json: body
+});
 
 /**
 * @api providerLogin
