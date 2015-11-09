@@ -22,21 +22,6 @@ describe('ProviderLoginTests', () => {
       .expect(200, done);
   });
 
-  it('should fail with too short of a password', (done) => {
-    api.post('/provider/register')
-      .set('Accept, application/json')
-      .send({
-        ssn: 246810112,
-        npi: 246810112,
-        firstName: 'David',
-        lastName: 'Dominguez',
-        email: 'domind4@rpi.edu',
-        password: 'test',
-        prefix: 'Mr.'
-      })
-      .expect(400, done);
-  });
-
   it('should fail with not enough content', (done) => {
     api.post('/provider/register')
       .set('Accept, application/json')

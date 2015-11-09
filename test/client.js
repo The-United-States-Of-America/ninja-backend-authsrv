@@ -22,28 +22,15 @@ describe('ClientLoginTests', () => {
       .expect(200, done);
   });
 
-  it('should fail with too short of a password', (done) => {
+  it('should fail with not enough content', function(done) {
     api.post('/client/register')
       .set('Accept, application/json')
       .send({
-        ssn: '369121518',
         firstName: 'Sharkbait',
-        lastName: 'Nemo',
         email: 'nemos@rpi.edu',
         password: 'test'
       })
       .expect(400, done);
-  });
-
-  it('should fail with not enough content', (done) => {
-    api.post('/client/register')
-      .set('Accept, application/json')
-      .send({
-        firstName: 'Sharkbait',
-        email: 'nemos@rpi.edu',
-        password: 'test'
-      })
-      .expect(404, done);
   });
 
   it('should succeed client login', (done) => {
@@ -73,7 +60,7 @@ describe('ClientLoginTests', () => {
          email: 'sathyp@rpi.edu',
          password: 'wrongtest'
        })
-       .expect(404, done);
+       .expect(400, done);
   });
 
 });

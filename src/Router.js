@@ -18,7 +18,7 @@ export default class Router {
       //sample_route: new SampleRoute()
       client: new ClientRoute(),
       provider: new ProviderRoute(),
-      administrator: new AdministratorRoute()
+      admin: new AdministratorRoute()
     };
 
     for (let route in routes) {

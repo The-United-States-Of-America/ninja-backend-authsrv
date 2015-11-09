@@ -37,7 +37,7 @@ export default class ClientRoute {
                 json: req.body
               }, function(error, response, body) {
                   if(error) return res.status(400).end(error);
-                  else if(response.statusCode !== 200) return res.status(400).end("Invalid Registration: Please make sure all content is filled");
+                  else if(response.statusCode !== 200) return res.status(400).end(JSON.stringify(body));
                   else res.end(JSON.stringify(body));
               });
     });
