@@ -66,12 +66,6 @@ export default class ClientRoute {
                   else if(req.body.password !== JSON.parse(body).password) return res.status(400).end("Invalid Password");
                   else return res.send(JSON.parse(body));
               });
-
-      // client.get(clientLogin(req.body.email), (error, response, body) => {
-      //   if(response.statusCode !== 200) return res.status(400).send("Invalid Email");
-      //   if(req.body.password !== JSON.parse(body).password) return res.status(404).send("Invalid Password");
-      //   else return res.send(JSON.parse(body));
-      // });
     });
 
   }

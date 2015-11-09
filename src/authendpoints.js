@@ -1,26 +1,3 @@
-/**
-* @api optionsLogin
-* @apiGroup Client
-*
-* @apiParam {String} email Client's Email
-*
-*/
-export const clientLogin = (email) => ({
-    url: 'http://localhost:8000/client/get/' + email,
-    headers: {
-      'User-Agent': 'request'
-    }
-  });
-
-export const clientRegister = (body) => ({
-  url: 'http://localhost:8000/client/create',
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-
-  json: body
-});
 
 /**
 * @api providerLogin

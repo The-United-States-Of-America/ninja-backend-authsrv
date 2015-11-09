@@ -1,4 +1,3 @@
-import {providerLogin} from '../authendpoints'
 import request from 'request';
 import express from 'express';
 const rtr = express.Router();
@@ -20,19 +19,30 @@ export default class ProviderRoute {
     * @apiParam {String} password
     * @apiParam {Number} ssn
     * @apiParam {Number} npi
+
+    * @apiParam {String} firstName
+    * @apiParam {String} lastName
+    * @apiParam {String} prefix
     *
     *
     * @apiError InvalidPassword Password must be at leat 5 charcters long
     * @apiError IncompleteRegistration All fields must be completed
     */
-    // rtr.post('/register', (req, res) => {
-    //   console.log(body);
-    //   request(providerRegister, (error, response, body) => {
-    //
-    //   if(req.body.password.length < 5) return res.status(400).send("Password must be at least 5 characters long");
-    //   if(response.statusCode !== 200) return res.status(404).send("Invalid Registration: Please make sure all content is filled");
-    //   else return res.send(JSON.parse(body));
-    // });
+    rtr.post('/register', (req, res) => {
+      request({
+                url: 'http://localhost:8000/provider/create',
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+
+                json: req.body
+              }, function(error, response, body) {
+                  if(error) return res.status(400).end(error);
+                  else if(response.statusCode !== 200) return res.status(400).end(JSON.stringify(body));
+                  else res.end(JSON.stringify(body));
+              });
+    });
 
     /**
     * @api {post} /provider/login Provider Login
@@ -46,11 +56,18 @@ export default class ProviderRoute {
     * @apiError InvalidEmail
     */
     rtr.post('/login', (req, res) => {
-      request(providerLogin(req.body.email), (error, response, body) => {
-        if(response.statusCode !== 200) return res.status(400).send("Invalid Email");
-        if(req.body.password !== JSON.parse(body).password) return res.status(404).send("Invalid Password");
-        else return res.send(JSON.parse(body));
-      });
+      request({
+                url: 'http://localhost:8000/provider/get/' + req.body.email,
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'application/json'
+                }
+              }, function(error, response, body) {
+                if(error) return res.status(400).end(error);
+                else if(response.statusCode !== 200) return res.status(400).end("Invalid Email");
+                else if(req.body.password !== JSON.parse(body).password) return res.status(400).end("Invalid Password");
+                else return res.send(JSON.parse(body));
+              });
     });
 
   }

@@ -140,29 +140,6 @@
     "groupTitle": "Administrator"
   },
   {
-    "type": "",
-    "url": "optionsLogin",
-    "title": "",
-    "group": "Client",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "email",
-            "description": "<p>Client's Email</p> "
-          }
-        ]
-      }
-    },
-    "version": "0.0.0",
-    "filename": "src/authendpoints.js",
-    "groupTitle": "Client",
-    "name": "Optionslogin"
-  },
-  {
     "type": "post",
     "url": "/client/login",
     "title": "Client Login",
@@ -408,6 +385,27 @@
             "type": "<p>Number</p> ",
             "optional": false,
             "field": "npi",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "firstName",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "lastName",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "prefix",
             "description": ""
           }
         ]
