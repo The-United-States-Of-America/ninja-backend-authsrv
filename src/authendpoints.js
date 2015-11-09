@@ -40,19 +40,13 @@ export const providerLogin = (email) => ({
 * @apiParam {Number} npi Provider's National Provider Index
 *
 */
-export const providerRegister = (npi) => ({
-  url: 'http://localhost:8000/provider/create/' + npi,
-  headers: {
-    'User-Agent': 'request'
-  }
-});
 
-export const providerRegister = {
-  url: 'http://localhost:8000/provider/create',
-  headers: {
-    'User-Agent': 'request'
-  }
-};
+// export const providerRegister = {
+//   url: 'http://localhost:8000/provider/create',
+//   headers: {
+//     'User-Agent': 'request'
+//   }
+// };
 
 
 /**
