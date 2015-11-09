@@ -1,0 +1,27 @@
+{
+  "coverage": "100%",
+  "expectCount": 11,
+  "actualCount": 11,
+  "files": {
+    "src/routes/administrator.js": {
+      "expectCount": 3,
+      "actualCount": 3,
+      "undocumentLines": []
+    },
+    "src/routes/client.js": {
+      "expectCount": 3,
+      "actualCount": 3,
+      "undocumentLines": []
+    },
+    "src/routes/provider.js": {
+      "expectCount": 3,
+      "actualCount": 3,
+      "undocumentLines": []
+    },
+    "src/Router.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    }
+  }
+}
